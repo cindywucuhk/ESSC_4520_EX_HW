@@ -1,14 +1,7 @@
 ##################################################
-### Lecture 01 Exercise
+### Lecture 01 Exercise 2,3
 ### Name: Wu Hei Tung
 ### SID: 1155109536
-##################################################
-## Exercise 1
-## Print words using Python
-##################################################
-# print with the script mode
-print('Mong Man Wai Building')
-
 ##################################################
 ## Exercise 2
 ## Assign variables and print my birthday
@@ -51,7 +44,7 @@ saturated_vP = 6.1094 * e ** ((17.625 * air_T) / (air_T + 243.04))
 # RH
 RH = actual_vP / saturated_vP
 
-print(RH*100, '%')
+print(RH * 100, '%')
 
 ##################################################
 ## END
