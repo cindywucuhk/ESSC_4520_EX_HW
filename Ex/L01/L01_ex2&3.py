@@ -47,6 +47,17 @@ RH = actual_vP / saturated_vP
 # print the RH
 print(RH * 100, '%')
 
+# set air temperature to 32.7 degC now
+air_T = 32.7
+
+# recalculate the RH
+actual_vP = 6.1094 * e ** ((17.625 * dew_pt_T) / (dew_pt_T + 243.04))
+saturated_vP = 6.1094 * e ** ((17.625 * air_T) / (air_T + 243.04))
+RH = actual_vP / saturated_vP
+
+# print the RH
+print(RH * 100, '%')
+
 ##################################################
 ## END
 ##################################################
