@@ -6,6 +6,7 @@ This file store all the class exercise code
 
 ## L02
 Exercise from L02
+
 No python coding, just derivation exercises
 
 ## L03
