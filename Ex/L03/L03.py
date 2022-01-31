@@ -140,7 +140,7 @@ b = 2
 c = 3
 
 # assign 10 arbitrary values for x
-x = np.arange(10,21)
+x = np.arange(11,21)
 
 # assign 3 delta x
 delta_x = [3,2,1]
@@ -148,7 +148,7 @@ delta_x = [3,2,1]
 dfdx=[['\u0394x=' + str(delta_x[0])], ['\u0394x=' + str(delta_x[1])], ['\u0394x=' + str(delta_x[2])], ['analytical'], ['\u0394(\u0394x=' + str(delta_x[0])+')'], ['\u0394(\u0394x=' + str(delta_x[1])+')'], ['\u0394(\u0394x=' + str(delta_x[2])+')']]
 
 # calculate dF/dx
-for i in range(0,11):
+for i in range(0,10):
   # analytical result
   analytical = 2*a*x[i] + b
   dfdx[3].append(sigfig(analytical,4))
