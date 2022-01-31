@@ -10,4 +10,4 @@ Exercise from L02
 No python coding, just derivation exercises
 
 ## L03
-3 coding exercise on finite differencing with 1 derivation
+3 coding exercise on finite differencing with 1 derivation from L03
