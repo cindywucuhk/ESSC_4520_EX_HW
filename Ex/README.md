@@ -11,3 +11,6 @@ No python coding, just derivation exercises
 
 ## L03
 3 coding exercise on finite differencing with 1 derivation from L03
+
+## L04
+big coding project from L04 Ex3
