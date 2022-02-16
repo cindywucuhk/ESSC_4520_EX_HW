@@ -168,7 +168,7 @@ def Ex3_eq_solving(c, Nx, A, dx, Nn, k, dt, case):
     # reset u
     u_old = u
     u = u_new
-
+    
 
   ##################################################
   ## Plot GIF to show the whole case
