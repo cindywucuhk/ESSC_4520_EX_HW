@@ -76,7 +76,7 @@ def Ex3_eq_solving(c, Nx, A, dx, Nn, k, dt, case):
   down = round(np.min(y)) - 4
   plt.yticks(range(down,up,2))
   plt.ylabel('u (m/s)')
-  plt.xlabel('dx')
+  plt.xlabel('i')
   plt.title('n = 0')
   plt.savefig(fig_name)
   plt.close() 
@@ -107,7 +107,7 @@ def Ex3_eq_solving(c, Nx, A, dx, Nn, k, dt, case):
   fig_name = plot_dir + '/t_1.png'
   plt.yticks(range(down,up,2))
   plt.ylabel('u (m/s)')
-  plt.xlabel('dx')
+  plt.xlabel('i')
   plt.title('n = 1')
   plt.savefig(fig_name)
   plt.close() 
@@ -160,7 +160,7 @@ def Ex3_eq_solving(c, Nx, A, dx, Nn, k, dt, case):
     fig_name = plot_dir + '/t_' + str(n) + '.png'
     plt.yticks(range(down,up,2))
     plt.ylabel('u (m/s)')
-    plt.xlabel('dx')
+    plt.xlabel('i')
     plt.title('n = ' + str(n))
     plt.savefig(fig_name)
     plt.close() 
@@ -236,6 +236,8 @@ rmse.append(Ex3_eq_solving(c, Nx, A, dx, Nn, k, dt, '3'))
 ## print table of RMSE
 ##################################################
 col = [' ', 'Case 1 RMS', 'Case 2 RMS', 'Case 3 RMS']
+
+
 # rearrange rmse
 rmse = np.array(rmse).T.tolist()
 print(tabulate(rmse, headers=col))
