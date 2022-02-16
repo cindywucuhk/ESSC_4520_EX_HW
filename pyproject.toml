@@ -8,6 +8,7 @@ authors = ["cindywucuhk <<>>"]
 python = "^3.8"
 pandas = "^1.4.0"
 tabulate = "^0.8.9"
+imageio = "^2.16.0"
 
 [tool.poetry.dev-dependencies]
 
