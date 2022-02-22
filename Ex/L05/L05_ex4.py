@@ -1,5 +1,5 @@
 ##################################################
-### Lecture 05 Exercise 3
+### Lecture 05 Exercise 4
 ### Name: Wu Hei Tung
 ### SID: 1155109536
 ##################################################
@@ -13,7 +13,7 @@ import os                         # dir making
 ## Set directories
 ##################################################
 # Ex no.
-ex_no = "3"
+ex_no = "4_1"
 
 # Directory
 directory = "Ex" + ex_no
@@ -86,12 +86,16 @@ dt = 30     # time change within 2 time steps
 yup = 1.5
 ydown = -0.5
 
+# filter factor
+gamma = 0.05
+
 ##################################################
 ## Initialise arrays and lists
 ##################################################
 u = np.zeros(Nx)      # current values
 u_new = np.zeros(Nx)  # new values
 u_old = np.zeros(Nx)  # past values
+u_fil = np.zeros(Nx)  # filtered values
 
 ##################################################
 ## Initialize solution for time level zero
@@ -121,6 +125,8 @@ for n in range(0, Nt + 1):
     u_new[0] = u[0]
     u_new[Nx - 1] = u[Nx - 1]
 
+    # filter
+    u_fil = u + gamma * (u_new - 2*u + u_old)
 
     ##################################################
     ## Record outputs
@@ -142,16 +148,17 @@ for n in range(0, Nt + 1):
         plt.legend()
        
         # title name
+        title_g = "$\gamma$ = " + str(gamma) + ",  "
         title_c = "c = " + str(c) + ",  "
         title_n = "n = {:03}".format(n)
-        title = title_c + title_n
+        title = title_g + title_c + title_n
         plt.title(title, fontsize=15)
         # save figures
         plt.savefig(save_name, dpi=300)
 
 
     # update u -> u_new
-    u_old = np.copy(u)
+    u_old = np.copy(u_fil)
     u = np.copy(u_new)
     
 
