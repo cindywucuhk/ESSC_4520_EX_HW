@@ -14,7 +14,7 @@ import os                         # dir making
 ## Set directories
 ##################################################
 # Ex no.
-ex_no = "2_2"
+ex_no = "2_3"
 
 # Directory
 directory = "Ex" + ex_no
@@ -107,6 +107,21 @@ def method_5(u):
   
   return result
 
+##################################################
+# 3) Open boundary condition
+def openbcs(u,uo,un,sigma):
+  """ Open boundary condition: un[-1]=uo[-1]-2c(u[-1]-u[-2])
+      Argument:
+      u[nparray] - 1-D array that needed to fill the bcs
+      Return:
+      result[nparray] - filled 1-D array
+  """
+  # copy the array for modification
+  result = np.copy(un)
+  # add bcs
+  result[-1]=uo[-1]-2*sigma*(u[-1]-u[-2])
+  
+  return result
 
 ##################################################
 ## Initialise variables
@@ -118,11 +133,11 @@ c = 15      # speed of advection (upwind)
 dx = 1000   # distance change within 2 space points
 dt = 30     # time change within 2 time steps
 rt = 50     # the recoding time step (once in every 30)
-met = 5     # the method number
+met = 'open'     # the method number
 
 # set plotting info
-yup = 0.1
-ydown = -0.1
+yup = 1
+ydown = -1
 no_plt = Nt+1    # the first no_plt plot you want to plot (for blow up) 
 
 # filter factor
@@ -172,10 +187,14 @@ for n in range(0, Nt + 1):
       u = method_5(u)
     elif met == 'con':
       u[Nx - 1] = u[Nx - 1]
-      
+    
     # Use C-T C-S scheme
     u_new = ctcs(u, u_old, sigma, Nx)
-      
+
+    # Open BCs 
+    if met == 'open':
+      u_new = openbcs(u,u_old,u_new,sigma)
+  
     # include a Asselin-Roberts time filter
     # filter
     u_fil = u + gamma * (u_new - 2*u + u_old)
@@ -189,7 +208,7 @@ for n in range(0, Nt + 1):
         u_new.tofile(outfile, sep=',', format='%f')
         outfile.write('\n')
 
-        if n >= 750:
+        if (n >= 700):
           # Plot graph in every n%rt == 0
           # plot name
           plt_ex = "/ex" + ex_no + "_"
@@ -198,6 +217,8 @@ for n in range(0, Nt + 1):
           print(fn)
 
           # title name
+          if met=='open':
+            title_m = "one-way wave equation"
           title_m = "Method " + str(met) + ",  "
           title_n = "n = {:03}".format(n)
           title = title_m + title_n
@@ -206,7 +227,7 @@ for n in range(0, Nt + 1):
           plt.xlabel("i")
           plt.ylabel("u(m/s)")
           plt.title(title, fontsize=15)
-          plt.plot(u)
+          plt.plot(u_new)
           # save figures
           plt.savefig(save_name, dpi=300)
           plt.close()
