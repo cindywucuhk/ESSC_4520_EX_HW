@@ -208,7 +208,7 @@ for n in range(0, Nt + 1):
         u_new.tofile(outfile, sep=',', format='%f')
         outfile.write('\n')
 
-        if (n >= 700):
+        if (n >= 750):
           # Plot graph in every n%rt == 0
           # plot name
           plt_ex = "/ex" + ex_no + "_"
@@ -218,8 +218,9 @@ for n in range(0, Nt + 1):
 
           # title name
           if met=='open':
-            title_m = "one-way wave equation"
-          title_m = "Method " + str(met) + ",  "
+            title_m = "one-way wave equation  "
+          else:
+            title_m = "Method " + str(met) + ",  "
           title_n = "n = {:03}".format(n)
           title = title_m + title_n
           
