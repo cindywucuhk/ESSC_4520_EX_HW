@@ -11,33 +11,27 @@ import matplotlib.pyplot as plt
 ##################################################
 ## make a plot array
 ##################################################
-RH0=0.8
-c=np.zeros(1000)
-RH=np.arange(0,120,0.12)/100
-print(len(RH))
+RH0=0.8                             # critical RH0
+c=np.zeros(1000)                    # subgrid scale cloud coverage
+RH=np.arange(0,150,0.15)/100        # resolved scale RH
 
 for i in range(0,1000):
-  if RH[i]<=RH0:
+
+  if RH[i]<=RH0:                    # RH <= RH0
     c[i]=0
-  elif RH[i]>=1:
+  elif RH[i]>=1:                    # RH => 100%
     c[i]=1
-  else:
-    c[i]=((RH[i]-RH0)/(1-RH[i]))**2
-print(RH)
-print(c)
-c[c>1]=1
-no=np.where(RH<=RH0)
-always=np.where(RH>=1)
-some=np.where((RH>RH0)&(RH<1))
+  else:                             # RH0 < RH < 100
+    c[i]=((RH[i]-RH0)/(1-RH0))**2
+
 
 #################################################
 ## Plot the c vs RH
 #################################################
 fig = plt.figure()
 ax = fig.add_subplot(1,1,1)
-c_plot = ax.plot(RH[some], c[some], color='black')
-c_plot1 = ax.plot(RH[no], c[no], color='black')
-c_plot2 = ax.plot(RH[always], c[always], color='black')
+c_plot = ax.plot(RH*100, c*100, color='black')
 ax.set_xlabel('RH (%)')
-ax.set_ylabel('c (%)')
+ax.set_ylabel('C (%)')
+ax.set_title('Parameterized C vs Resolved RH')
 fig.savefig('L08_ex1')
